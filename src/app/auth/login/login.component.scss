@@ -1,0 +1,42 @@
+
+@import '../../../styles/shared';
+
+.form {
+    &--control {
+      margin: 1em 0;
+      input {
+        @extend .input;
+      }
+    }
+    &--button {
+      @extend .btn;
+      &.submit {
+        &:hover {
+          background-color: #be0711;
+        }
+      }
+      &.google {
+        background-color: #1356c7;
+        color: #f2f2f2;
+        border: 1px solid #141414;
+        .svg {
+          font-size: 1.5em;
+          margin-right: 0.4em;
+        }
+        &:hover {
+          background-color: #141414;
+          color: #f2f2f2;
+          border: 1px solid #f2f2f2;
+        }
+      }
+      &.anonimous {
+        background-color: transparent;
+        color: #d9d9d9;
+        border: 1px solid #d9d9d9;
+        &:hover {
+          color: #e50914;
+          border: 1px solid #e50914;
+        }
+      }
+    }
+  }
