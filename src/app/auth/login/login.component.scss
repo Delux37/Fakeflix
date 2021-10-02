@@ -1,5 +1,6 @@
 
 @import '../../../styles/shared';
+@import '../../../styles/shared';
 
 .form {
     &--control {
@@ -39,4 +40,8 @@
         }
       }
     }
+  }
+
+  .content {
+    @extend .content
   }

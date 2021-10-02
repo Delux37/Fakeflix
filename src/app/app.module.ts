@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { AuthComponent } from './auth/auth-wrapper/auth.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +17,9 @@ import { AuthComponent } from './auth/auth-wrapper/auth.component';
     AuthModule,
     RouterModule.forRoot([
       { path: 'auth', component: AuthComponent, children: [
-        
-        { path: 'login', component: LoginComponent }
+        { path: '', pathMatch: 'full', redirectTo: 'login' },
+        { path: 'login', component: LoginComponent },
+        { path: 'register', component: RegisterComponent },
       ] }
     ])
   ],

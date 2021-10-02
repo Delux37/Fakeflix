@@ -1,0 +1,23 @@
+@import '../../../styles/shared';
+@import '../../../styles/shared';
+
+.content {
+  @extend .content;
+}
+
+.form {
+    &--control {
+      margin: 1em 0;
+      input {
+        @extend .input;
+      }
+    }
+    &--button {
+      @extend .btn;
+      &.submit {
+        &:hover {
+          background-color: #be0711;
+        }
+      }
+    }
+  }
