@@ -6,14 +6,14 @@
       real credentials here!
     </small>
     <form class="form" autocomplete="off">
-      <div class="form--control">
+      <div class="form--control" style="--animation-order: 1;">
         <input type="email" placeholder="E-mail" />
       </div>
-      <div class="form--control">
+      <div class="form--control" style="--animation-order: 2;">
         <input type="password" placeholder="Password" />
       </div>
-      <button class="form--button submit">Sign in</button>
-      <button class="form--button google">
+      <button class="form--button submit" style="--animation-order: 3;">Sign in</button>
+      <button class="form--button google" style="--animation-order: 4;">
         <svg
           class="svg"
           stroke="currentColor"
@@ -52,7 +52,7 @@
         </svg>
         Sign in with Google
       </button>
-      <button class="form--button anonimous">Sign in anonimously</button>
+      <button class="form--button anonimous" style="--animation-order: 5;">Sign in anonimously</button>
     </form>
     <hr class="content__line" />
       <small class="content__signup--toggler">

@@ -5,12 +5,14 @@
 .form {
     &--control {
       margin: 1em 0;
+      @extend .animation;
       input {
         @extend .input;
       }
     }
     &--button {
       @extend .btn;
+      @extend .animation;
       &.submit {
         &:hover {
           background-color: #be0711;
