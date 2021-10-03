@@ -1,0 +1,126 @@
+.input {        
+    width: 100%;
+    padding: 1em 1.2em;
+    border-radius: 5px;
+    background-color: #333;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    color: #f2f2f2;
+    outline: none;
+    box-shadow: none;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease-out;
+    &.input-error {
+        border-bottom: 2px solid orange;
+    }
+}
+
+.btn {
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-shadow: none;
+    border: 1px solid transparent;
+    padding: 1.2em 0.8em;
+    border-radius: 5px;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    line-height: 1;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    min-height: 60px;
+    font-size: 15px;
+    margin-top: 0.5em;
+    background-color: #e50914;
+    color: #f2f2f2;
+    &:first-of-type {
+      margin-top: 2em;
+    }
+}
+
+.content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 100%;
+    max-width: 90%;
+    padding: 3.75em 3em;
+    border-radius: 8px;
+    background-color: rgba(3, 3, 3, 0.75);
+    max-width: 500px;
+  
+    div {
+      font-family: "Inter", sans-serif;
+      color: #f2f2f2;
+    }
+  
+    &--title {
+      font-size: 1.5rem;
+      margin-bottom: 1em;
+    }
+  
+    &--disclaimer {
+      font-weight: 600;
+      color: #e50914;
+      display: inherit;
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      line-height: 1.4;
+      text-align: center;
+      margin-top: 1.5em;
+    }
+  
+    &__line {
+      margin: 1.5em;
+      border-color: #777;
+    }
+  
+    &__signup--toggler {
+      display: inherit;
+      font-family: "Inter", sans-serif;
+      font-size: 16px;
+      line-height: 1.4;
+      color: #747474;
+      text-align: center;
+      &-btn {
+        display: inline-block;
+        color: #e50914;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 1.4;
+        cursor: pointer;
+        transition: all 0.2s ease-out;
+  
+        &:hover{
+          transform: scale(.95);
+          color: #be0711;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .animation {
+    animation-name: animateIn;
+    animation-duration: 350ms;
+    animation-delay: calc(var(--animation-order) * 100ms);
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+  }
+
+  @keyframes animateIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.6) translateY(-8px);
+    }
+    
+    100% {
+      opacity: 1;
+    }
+  }

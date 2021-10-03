@@ -1,0 +1,85 @@
+.navbar {
+  position: fixed;
+  box-sizing: border-box;
+  z-index: 10;
+  width: 100%;
+  height: 70px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 4vw;
+  background-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.7) 10%,
+    transparent
+  );
+  transition: all 0.2s ease-out;
+
+  &__logo {
+    img {
+      width: 100%;
+      max-width: 130px;
+    }
+  }
+
+  &__primary {
+    list-style: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    cursor: pointer;
+    // width: unset;
+    // height: unset;
+    // top: unset;
+    // left: unset;
+    // margin: unset;
+    margin-left: 2rem;
+    pointer-events: all;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+
+    li {
+      display: inline-block;
+      margin: 0 12px;
+      text-shadow: 2px 2px 2px rgb(20 20 20 / 45%);
+      font-size: 1.2vw;
+      pointer-events: all;
+      cursor: pointer;
+    }
+  }
+
+  &__secondary {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    margin-left: auto;
+
+    &--item {
+      &:first-child {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-right: 2rem;
+        cursor: pointer;
+        i {
+            font-size: 24px;
+        }
+      }
+      &:last-child {
+        position: relative;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        >div {
+            margin-right: 8px;
+            width: 40px;
+            height: 40px;
+            background-color: gray;
+        }
+      }
+    }
+  }
+}

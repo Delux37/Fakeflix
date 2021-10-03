@@ -7,20 +7,25 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { AuthComponent } from './auth/auth-wrapper/auth.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { CatalogComponent } from './features/catalog/catalog.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CatalogComponent
   ],
   imports: [
     BrowserModule,
     AuthModule,
     RouterModule.forRoot([
+      { path: '', component: CatalogComponent },
+
       { path: 'auth', component: AuthComponent, children: [
         { path: '', pathMatch: 'full', redirectTo: 'login' },
         { path: 'login', component: LoginComponent },
         { path: 'register', component: RegisterComponent },
       ] }
+      
     ])
   ],
   providers: [],
