@@ -1,7 +1,9 @@
+import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthModule } from './auth/auth.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
@@ -11,16 +13,19 @@ import { CatalogComponent } from './features/catalog/catalog.component';
 import { NavbarComponent } from './features/catalog/navbar/navbar.component';
 import { BannerComponent } from './features/catalog/banner/banner.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     CatalogComponent,
     NavbarComponent,
-    BannerComponent
+    BannerComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AuthModule,
+    SharedModule,
     RouterModule.forRoot([
       { path: '', component: CatalogComponent },
 

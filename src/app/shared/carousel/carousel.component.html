@@ -1,0 +1,23 @@
+<div class="container">
+    <h1 class="slider__title">Title</h1>
+    <div class="slider">
+      <div class="blur"></div>
+      <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-pagination-unique">
+          <span class="swiper-pagination-bullet-active"></span>
+          <span class="swiper-pagination-bullet"></span>
+        </div>
+        <div class="swiper-button-prev mask left"></div>
+        <div class="swiper-wrapper">
+    
+          <!-- Slides -->
+          <div class="swiper-slide poster" 
+          *ngFor="let movie of movies"
+          >
+            <img [src]="image + movie.backdrop_path" >
+          </div>
+      </div>
+      <div class="swiper-button-next mask right"></div>
+    </div>
+  </div>

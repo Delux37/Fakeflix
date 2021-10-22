@@ -1,2 +1,7 @@
 <app-navbar></app-navbar>
 <app-banner></app-banner>
+
+<ng-container *ngIf="data$ | async as data">
+    <app-carousel [movies]="data">
+    </app-carousel>
+</ng-container>

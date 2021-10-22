@@ -9,3 +9,25 @@ body {
     font-family: "Inter", sans-serif;
     color: #f2f2f2;
 }
+
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/pagination';
+
+span.swiper-pagination-bullet{
+    width: 12px;
+    height: 4px;
+    display: inline-block;
+    margin: 0 0 0 2px !important;
+    border-radius: 0;
+    opacity: 1;
+    background-color: #4d4d4d;
+    transition: all 0.2s ease-in-out;
+  }
+span.swiper-pagination-bullet.swiper-pagination-bullet-active{
+    background-color: #aaa !important;
+    height: 5px;
+}
+// :root {
+//     --swiper-theme-color: red
+//   }

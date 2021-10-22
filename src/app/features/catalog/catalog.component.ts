@@ -1,4 +1,6 @@
+import { CatalogService } from './../catalog.service';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-catalog',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./catalog.component.scss']
 })
 export class CatalogComponent implements OnInit {
-
-  constructor() { }
-
+  constructor(private catalogService: CatalogService) { }
+  // movies$ = this.catalogService.fetch();
+  data$ = this.catalogService.fetch()
   ngOnInit(): void {
   }
-
+  
+  right() {
+  }
 }
