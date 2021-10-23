@@ -1,6 +1,6 @@
-<div class="banner">
+<div class="banner" [ngStyle]="{ backgroundImage: 'url(' + convertToUrl(image) + ')' }">
     <div class="banner__content">
-      <h1 class="banner__content--title">Cobra Kai</h1>
+      <h1 class="banner__content--title">{{ title }}</h1>
       <div class="banner__content--buttons">
         <a class="banner__content--buttons__button">
           <i class="fas fa-play"></i>
@@ -12,9 +12,10 @@
         </a>
       </div>
       <p class="banner__content--description">
-        This Karate Kid sequel series picks up 30 years after the events of the
+        {{ addDots(description) }}
+        <!-- This Karate Kid sequel series picks up 30 years after the events of the
         1984 All Valley Karate Tournament and finds Johnny Lawrence on the hunt
-        for r...
+        for r... -->
       </p>
     </div>
     <div class="banner__panel"></div>

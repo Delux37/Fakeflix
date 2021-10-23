@@ -1,3 +1,4 @@
+import { CatalogService } from './../../features/catalog.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import SwiperCore, {
@@ -31,10 +32,10 @@ SwiperCore.use([
   styleUrls: ['./carousel.component.scss']
 })
 export class CarouselComponent implements OnInit {
-  @Input() movies: any[] = [];
+  @Input() movies!: any[];
+  @Input() title!: string;
   image = environment.image;
-  constructor() { }
-
+  constructor(public catalogService: CatalogService) { }
   ngOnInit(): void {
     let carousel = new Swiper('.swiper', {
       navigation: {
@@ -55,5 +56,6 @@ export class CarouselComponent implements OnInit {
       scrollbar: { draggable: true },
     });
   }
+  
 
 }

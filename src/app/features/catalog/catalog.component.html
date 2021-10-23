@@ -1,7 +1,35 @@
 <app-navbar></app-navbar>
-<app-banner></app-banner>
-
-<ng-container *ngIf="data$ | async as data">
-    <app-carousel [movies]="data">
-    </app-carousel>
+<ng-container *ngIf="banner$ | async as banner">
+    <app-banner 
+        [title] ="banner.name"
+        [description] ="banner.overview"
+        [image]="banner.backdrop_path"
+    ></app-banner>
 </ng-container>
+
+<div class="content">
+    <ng-container *ngIf="topRated$ | async as topRated" >
+        <app-carousel [movies]="topRated" title="Top Rated on Fakeflix">
+        </app-carousel>
+    </ng-container>
+    <ng-container *ngIf="trendingNow$ | async as trendingNow">
+        <app-carousel [movies]="trendingNow" title="Trending now">
+        </app-carousel>
+    </ng-container>
+    <ng-container *ngIf="upComing$ | async as upcoming">
+        <app-carousel [movies]="upcoming" title="Upcoming">
+        </app-carousel>
+    </ng-container>
+    <ng-container *ngIf="fakeflixOriginal$ | async as fakeflixOriginal">
+        <app-carousel [movies]="fakeflixOriginal" title="Fakeflix Originals">
+        </app-carousel>
+    </ng-container>
+    <ng-container *ngIf="action$ | async as action">
+        <app-carousel [movies]="action" title="Action">
+        </app-carousel>
+    </ng-container>
+    <ng-container *ngIf="adventure$ | async as adventure">
+        <app-carousel [movies]="adventure" title="Adventure">
+        </app-carousel>
+    </ng-container>
+</div>
