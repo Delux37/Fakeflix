@@ -1,5 +1,6 @@
+import { DialogService } from './../dialog/service/dialog.service';
 import { CatalogService } from './../../features/catalog.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import SwiperCore, {
   Navigation,
@@ -13,6 +14,7 @@ import SwiperCore, {
   Controller,
   Swiper
 } from 'swiper';
+import { Movie } from 'src/app/features/catalog/model/movie.model';
 
 SwiperCore.use([
   Navigation,
@@ -35,8 +37,12 @@ export class CarouselComponent implements OnInit {
   @Input() movies!: any[];
   @Input() title!: string;
   image = environment.image;
-  constructor(public catalogService: CatalogService) { }
+  constructor(public catalogService: CatalogService, private dialogService: DialogService) { }
+  showDetailModal(movie: Movie) {
+    this.dialogService.updateDialog(movie);
+  }
   ngOnInit(): void {
+
     let carousel = new Swiper('.swiper', {
       navigation: {
         nextEl: '.swiper-button-next',

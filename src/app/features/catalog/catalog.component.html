@@ -6,10 +6,10 @@
         [image]="banner.backdrop_path"
     ></app-banner>
 </ng-container>
-
+<app-dialog></app-dialog>
 <div class="content">
     <ng-container *ngIf="topRated$ | async as topRated" >
-        <app-carousel [movies]="topRated" title="Top Rated on Fakeflix">
+        <app-carousel [movies]="topRated" title="Top Rated on Fakeflix" >
         </app-carousel>
     </ng-container>
     <ng-container *ngIf="trendingNow$ | async as trendingNow">

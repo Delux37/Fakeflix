@@ -1,0 +1,66 @@
+<div class="container" *ngIf="movie">
+    <div class="container__image">
+        <div class="buttons">
+            <a class="buttons__button">
+                <i class="fas fa-play"></i>
+                Play
+            </a>
+            <button class="btn-add">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+            </button>
+        </div>
+        <div class="close-btn">
+            <a class="close-btn__button">
+                <i class="fas fa-times"></i>
+            </a>
+        </div>
+        <img [src]="'https://image.tmdb.org/t/p/original/' + movie.backdrop_path"/>
+        <div class="container__image--shadow"></div>
+    </div>
+    <div class="container__info">
+        <h3>{{ movie.original_title }}</h3>
+        <p>{{ movie.overview }}</p>
+        <hr>
+        <h4>Info on {{ movie.title }}</h4>
+        <div class="container__info--additional">
+            <div class="label">
+                Genres: 
+            </div>
+            <div class="description" *ngFor="let genreId of movie.genre_ids">
+                {{ catalogService.getGenreName(genreId) }}
+            </div>
+        </div>
+        <div class="container__info--additional">
+            <div class="label">
+                Average vote: 
+            </div>
+            <div class="description" *ngFor="let genreId of movie.genre_ids">
+                {{ movie.vote_average }}
+            </div>
+        </div>
+        <div class="container__info--additional">
+            <div class="label">
+                Release date: 
+            </div>
+            <div class="description" *ngFor="let genreId of movie.genre_ids">
+                {{ movie.release_date }}
+            </div>
+        </div>
+        <div class="container__info--additional">
+            <div class="label">
+                Original language: 
+            </div>
+            <div class="description">
+                {{ movie.original_language }}
+            </div>
+        </div>
+        <div class="container__info--additional">
+            <div class="label">
+                Age clasification: 
+            </div>
+            <div class="description">
+                {{ movie.adult ? 'Suitable for all ages' : 'Suitable for adults only' }}
+            </div>
+        </div>
+    </div>
+</div>
