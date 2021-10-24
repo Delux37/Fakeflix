@@ -26,8 +26,7 @@ export class CatalogService {
     return this.http.get(environment.api + `${type}?api_key=${environment['api-key']}&${filter ? filter : ''}`, {
       })
       .pipe(
-        map((res: any) => res.results),
-        tap(res => console.log(res))
+        map((res: any) => res.results)
       )
   }
   getGenreName(id: number): string {

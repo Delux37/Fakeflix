@@ -73,6 +73,13 @@
       border: 2px solid #fff;
       border-radius: 50%;
       color: #000;
+      transition: all .3s ease-in-out;
+    }
+    &:hover .close-btn__button{
+        background-color: #000;
+        border: 2px solid #000;
+        cursor: pointer;
+        color: #fff;
     }
   }
   &__image {

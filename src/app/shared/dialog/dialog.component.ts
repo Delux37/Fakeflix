@@ -11,10 +11,12 @@ export class DialogComponent implements OnInit {
 
   constructor(private dialogService: DialogService, public catalogService :CatalogService) { }
 
-  movie = this.dialogService.tempMovie;
+  movie$ = this.dialogService.dialog$;
 
   ngOnInit(): void {
     
   }
-
+  closeModal() {
+    this.dialogService.closeModal();
+  }
 }
