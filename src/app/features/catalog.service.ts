@@ -13,12 +13,13 @@ export class CatalogService {
   banner$ = this.fetch('discover/tv', '&with_networks=213&sort_by=popularity.desc&language=en-US')
   .pipe();
 
-  topRated$ = this.fetch('movie/top_rated');
-  trendingNow$ = this.fetch('trending/movies/week');
-  fakeflixOriginal$ = this.fetch('discover/tv');
-  action$ = this.fetch('discover/movie');
-  adventure$ = this.fetch('discover/movie');
-  upComing$ = this.fetch('movie/upcoming');
+  topRated$ = this.fetch('movie/top_rated', '&sort_by=popularity.desc&region=US');
+  trendingNow$ = this.fetch('trending/movies/week', '&sort_by=popularity.desc&language=en-US');
+  fakeflixOriginal$ = this.fetch('discover/tv', '&with_networks=213&sort_by=popularity.desc&language=en-US');
+  action$ = this.fetch('discover/movie', '&with_genres=28&sort_by=popularity.desc&language=en-US');
+  adventure$ = this.fetch('discover/movie', '&with_genres=12&sort_by=popularity.desc&language=en-US');
+  animation$ = this.fetch('discover/movie', '&with_genres=16&sort_by=popularity.desc&language=en-US');
+  upComing$ = this.fetch('movie/upcoming', '&language=en-US');
 
   movies$ = combineLatest([
     this.banner$,
@@ -27,13 +28,14 @@ export class CatalogService {
     this.fakeflixOriginal$,
     this.action$,
     this.adventure$,
+    this.animation$,
     this.upComing$
   ]).pipe(
-    map(( [banner, topRated, trendingNow, fakeFlixOriginal, action, adventure, upComing] ) => {
+    map(( [banner, topRated, trendingNow, fakeFlixOriginal, action, adventure,animation, upComing] ) => {
       return { 
         banner, 
         rest: [
-          topRated, trendingNow, fakeFlixOriginal, action, adventure, upComing
+          topRated, trendingNow, fakeFlixOriginal, action, adventure, animation, upComing
         ],
       }
     })

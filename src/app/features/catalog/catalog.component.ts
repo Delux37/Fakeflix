@@ -14,10 +14,11 @@ export class CatalogComponent implements OnInit {
   titles = [
     'Top Rated on Fakeflix',
     'Trending now',
-    'Upcoming',
     'Fakeflix Originals',
     'Action',
-    'Adventure'
+    'Adventure',
+    'Animation',
+    'Upcoming',
   ]
   ngOnInit(): void {
   }
