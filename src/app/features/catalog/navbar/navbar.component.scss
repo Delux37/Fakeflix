@@ -15,7 +15,7 @@
       transparent
     );
     transition: all 0.2s ease-out;
-  
+    
     &__logo {
       img {
         width: 100%;
@@ -30,16 +30,10 @@
       align-items: center;
       min-height: 40px;
       cursor: pointer;
-      // width: unset;
-      // height: unset;
-      // top: unset;
-      // left: unset;
-      // margin: unset;
       margin-left: 2rem;
       pointer-events: all;
       justify-content: center;
       transition: all 0.2s ease-in-out;
-  
       li {
         display: inline-block;
         margin: 0 12px;
@@ -47,6 +41,12 @@
         font-size: 1.2vw;
         pointer-events: all;
         cursor: pointer;
+        padding-bottom: 2px;
+        &.active{
+          border-bottom: 1px solid red;
+          color: #fff;
+          font-size: 1.3vw;
+        }
       }
     }
   

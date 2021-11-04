@@ -9,17 +9,11 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { AuthComponent } from './auth/auth-wrapper/auth.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { CatalogComponent } from './features/catalog/catalog.component';
-import { NavbarComponent } from './features/catalog/navbar/navbar.component';
-import { BannerComponent } from './features/catalog/banner/banner.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CatalogComponent,
-    NavbarComponent,
-    BannerComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,13 +21,34 @@ import { BannerComponent } from './features/catalog/banner/banner.component';
     AuthModule,
     SharedModule,
     RouterModule.forRoot([
-      { path: '', component: CatalogComponent },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      {
+        path: 'home',
+        loadChildren: () => import('./features/catalog/catalog.module').then(m => m.CatalogModule)
+      },
+      {
+        path: 'tv-series',
+        loadChildren: () => import('./features/catalog/catalog.module').then(m => m.CatalogModule)
+      },
+      {
+        path: 'movies',
+        loadChildren: () => import('./features/catalog/catalog.module').then(m => m.CatalogModule)
+      },
+      {
+        path: 'new-popular',
+        loadChildren: () => import('./features/catalog/catalog.module').then(m => m.CatalogModule)
+      },
+      {
+        path: 'my-list',
+        loadChildren: () => import('./features/catalog/catalog.module').then(m => m.CatalogModule)
+      },
 
       { path: 'auth', component: AuthComponent, children: [
         { path: '', pathMatch: 'full', redirectTo: 'login' },
         { path: 'login', component: LoginComponent },
         { path: 'register', component: RegisterComponent },
-      ] }
+      ] },
+      { path: '**', redirectTo: 'auth' }
       
     ])
   ],
