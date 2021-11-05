@@ -108,12 +108,43 @@ export class CatalogService {
         ],
       },
       'movies': {
-        urls: [],
-        titles: [],
+        urls: [
+          ['movie/top_rated', '&sort_by=popularity.desc&region=US'],
+          ['trending/movies/week', '&sort_by=popularity.desc&language=en-US'],
+          [
+            'discover/movie',
+            '&with_genres=28&sort_by=popularity.desc&language=en-US',
+          ],
+          [
+            'discover/movie',
+            '&with_genres=12&sort_by=popularity.desc&language=en-US',
+          ],
+          [
+            'discover/movie',
+            '&with_genres=16&sort_by=popularity.desc&language=en-US',
+          ],
+          ['movie/upcoming', '&language=en-US'],
+        ],
+        titles: [
+          'Top Rated on Fakeflix',
+          'Trending now',
+          'Action',
+          'Adventure',
+          'Animation',
+          'Upcoming',
+        ],
       },
       'new-popular': {
-        urls: [],
-        titles: [],
+        urls: [
+          ['movie/top_rated', '&sort_by=popularity.desc&region=GE'],
+          ['discover/movie', '&primary_release_date.gte=2021-10-05&sort_by=popularity.desc&language=en-US'],
+          ['movie/upcoming', '&language=en-US'],
+        ],
+        titles: [
+          'Top Rated on Fakeflix',
+          'New on fakeflix',
+          'Upcoming',
+        ],
       },
     };
     let activeMovies = { ...urls.home };
@@ -128,9 +159,11 @@ export class CatalogService {
         break;
       case 'movies':
         activeMovies = { ...urls['movies'] };
+        this.titles = urls['movies'].titles;
         break;
       case 'new-popular':
         activeMovies = { ...urls['new-popular'] };
+        this.titles = urls['new-popular'].titles;
         break;
     }   
     const restArr = activeMovies.urls.map((movie) => {

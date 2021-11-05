@@ -28,7 +28,7 @@
                 </button>
               </div>
               <div class="movie__info--title">
-                <h1>{{ movie.title }}</h1>
+                <h1>{{ movie.title || movie.name }}</h1>
               </div>
               <div class="movie__info--genres">
                 <p *ngFor="let genre_id of movie.genre_ids">{{ catalogService.getGenreName(genre_id) }}</p>
