@@ -11,15 +11,7 @@ import { map } from 'rxjs/operators';
 export class CatalogComponent implements OnInit {
   constructor(private catalogService: CatalogService) { }
   movies$ = this.catalogService.movies$;
-  titles = [
-    'Top Rated on Fakeflix',
-    'Trending now',
-    'Fakeflix Originals',
-    'Action',
-    'Adventure',
-    'Animation',
-    'Upcoming',
-  ]
+  titles = this.catalogService.titles;
   ngOnInit(): void {
   }
   
