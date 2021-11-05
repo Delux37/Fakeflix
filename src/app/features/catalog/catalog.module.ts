@@ -13,7 +13,7 @@ import { CatalogService } from '../catalog.service';
     CommonModule,
     SharedModule,
     RouterModule.forChild([
-      { path: '', pathMatch: 'full', component: CatalogComponent }
+      { path: '', pathMatch: 'full', component: CatalogComponent },
     ])
   ],
   providers: [CatalogService]

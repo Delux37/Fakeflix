@@ -9,11 +9,13 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { AuthComponent } from './auth/auth-wrapper/auth.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { SearchComponent } from './features/search/search.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,10 @@ import { RegisterComponent } from './auth/register/register.component';
       {
         path: 'my-list',
         loadChildren: () => import('./features/catalog/catalog.module').then(m => m.CatalogModule)
+      },
+      {
+        path: 'search',
+        component: SearchComponent
       },
 
       { path: 'auth', component: AuthComponent, children: [
