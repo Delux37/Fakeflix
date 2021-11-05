@@ -11,7 +11,8 @@
     </ul>
     <div class="navbar__secondary">
       <div class="navbar__secondary--item">
-        <i class="fas fa-search"></i>
+        <input type="text" [formControl]="search" class="search-bar" [ngClass]="{ active: isActive }">
+        <i class="fas fa-search" (click)="isActive = !isActive"></i>
       </div>
       <div class="navbar__secondary--item">
         <div></div>

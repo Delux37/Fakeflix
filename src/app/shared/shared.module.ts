@@ -6,6 +6,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { NavbarComponent } from '../features/catalog/navbar/navbar.component';
 import { BannerComponent } from '../features/catalog/banner/banner.component';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     SwiperModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   exports: [
     CarouselComponent,
