@@ -19,7 +19,7 @@ export class RegisterComponent {
 
   onSubmit() {
     const user = {
-      name: this.form.get('name')?.value,
+      displayName: this.form.get('name')?.value,
       email: this.form.get('email')?.value,
       password: this.form.get('passGroup.password')?.value
     }

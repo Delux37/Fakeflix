@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from './../services/auth.service';
 import { Component } from '@angular/core';
@@ -13,9 +14,13 @@ export class LoginComponent {
     'email': new FormControl(),
     'password': new FormControl()
   })
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   onSignIn() {
-    console.log(this.form)
+    const user = {
+      email: this.form.get('email')?.value,
+      password: this.form.get('password')?.value
+    }
+    this.authService.login(user);
   }
 }

@@ -6,15 +6,20 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   constructor(private http: HttpClient) { }
 
-  signup(user: AuthUser): void { 
-    delete user.name;
+  signup(user: AuthUser): void {
     this.http.post(environment.auth('signUp'), {
         ...user,
         returnSecureToken: true
     }).subscribe(e => console.log(e));
   }
   
-  login(){  }
+  login(user: AuthUser){ 
+    this.http.post(environment.auth('signInWithPassword'), {
+      ...user,
+      
+      returnSecureToken: true
+  }).subscribe(e => console.log(e));
+  }
 
 }
 
@@ -23,7 +28,7 @@ interface loginUser{
 }
 
 interface AuthUser {
-  name?: string;
+  displayNam?: string;
   email: string;
   password: string;
 }
