@@ -5,20 +5,22 @@
       Pay attention: this is not the original Netflix sign up. Don't insert your
       real credentials here!
     </small>
-<form class="form" autocomplete="off">
+<form class="form" autocomplete="off" [formGroup]="form">
     <div class="form--control" style="--animation-order: 1;">
-      <input type="text" placeholder="Your name" />
+      <input formControlName="name"  type="text" placeholder="Your name" />
     </div>
     <div class="form--control" style="--animation-order: 2;">
-      <input type="email" placeholder="E-mail" />
+      <input formControlName="email" type="email" placeholder="E-mail" />
     </div>
-    <div class="form--control" style="--animation-order: 3;">
-      <input type="password" placeholder="Password" />
-    </div>
-    <div class="form--control" style="--animation-order: 4;">
-      <input type="password" placeholder="Repeat your password" />
-    </div>
-    <button class="form--button submit" style="--animation-order: 5;">Sign up</button>
+    <ng-container formGroupName="passGroup">
+      <div class="form--control" style="--animation-order: 3;">
+        <input formControlName="password" type="password" placeholder="Password" />
+      </div>
+      <div class="form--control" style="--animation-order: 4;">
+        <input formControlName="c-password" type="password" placeholder="Repeat your password" />
+      </div>
+    </ng-container>
+    <button (click)="onSubmit()" class="form--button submit" style="--animation-order: 5;">Sign up</button>
   </form>
   <hr class="content__line" />
   <small class="content__signup--toggler">
