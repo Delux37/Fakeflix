@@ -1,3 +1,4 @@
+import { AppRouterModule } from './app-router.module';
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthModule } from './auth/auth.module';
@@ -10,56 +11,24 @@ import { RouterModule } from '@angular/router';
 import { AuthComponent } from './auth/auth-wrapper/auth.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { SearchComponent } from './features/search/search.component';
+import { CoreModule } from './core/core.module';
 
+const components = [AppComponent, SearchComponent];
+const modules = [
+  BrowserModule,
+  HttpClientModule,
+  AppRouterModule,
+  CoreModule,
+  AuthModule,
+  SharedModule,
+];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SearchComponent,
-  ],
+  declarations: [...components],
   imports: [
-    BrowserModule,
-    HttpClientModule,
-    AuthModule,
-    SharedModule,
-    RouterModule.forRoot([
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-      {
-        path: 'home',
-        loadChildren: () => import('./features/catalog/catalog.module').then(m => m.CatalogModule)
-      },
-      {
-        path: 'tv-series',
-        loadChildren: () => import('./features/catalog/catalog.module').then(m => m.CatalogModule)
-      },
-      {
-        path: 'movies',
-        loadChildren: () => import('./features/catalog/catalog.module').then(m => m.CatalogModule)
-      },
-      {
-        path: 'new-popular',
-        loadChildren: () => import('./features/catalog/catalog.module').then(m => m.CatalogModule)
-      },
-      {
-        path: 'my-list',
-        loadChildren: () => import('./features/catalog/catalog.module').then(m => m.CatalogModule)
-      },
-      {
-        path: 'search',
-        component: SearchComponent
-      },
-
-      { path: 'auth', component: AuthComponent, children: [
-        { path: '', pathMatch: 'full', redirectTo: 'login' },
-        { path: 'login', component: LoginComponent },
-        { path: 'register', component: RegisterComponent },
-      ] },
-
-      { path: '**', redirectTo: 'auth' }
-      
-    ])
+    ...modules,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
