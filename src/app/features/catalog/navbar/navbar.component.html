@@ -21,7 +21,7 @@
          [ngStyle]="{ 'background-image': 'url(https://avatars.dicebear.com/api/' + randomGender + '/' + username +'.svg)' }"
          ></div>
         <i class="fas fa-caret-down" [ngClass]="{ rotate: dropdownShown }"></i>
-        <div class="dropdown" *ngIf="dropdownShown"><p>Sign out</p></div>
+        <div class="dropdown" *ngIf="dropdownShown" (click)="logout()"><p>Sign out</p></div>
       </div>
     </div>
   </nav>
