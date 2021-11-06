@@ -78,7 +78,7 @@ export class AuthService {
       displayName: string, 
       _token: string,
       _tokenExpirationDate: string
-    } = JSON.parse(localStorage.getItem('userData') || '');
+    } = JSON.parse(localStorage.getItem('userData')!);
 
     if(!userData){
       return;
@@ -101,7 +101,7 @@ export class AuthService {
 
   logout() {
     this.$user.next(null);
-    localStorage.clearItem('userData');
+    localStorage.removeItem('userData');
     this.router.navigate(['/auth'])
   }
 

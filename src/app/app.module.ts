@@ -18,6 +18,7 @@ const modules = [
   BrowserModule,
   HttpClientModule,
   AppRouterModule,
+  RouterModule,
   CoreModule,
   AuthModule,
   SharedModule,
