@@ -14,9 +14,12 @@
         <input type="text" [formControl]="search" class="search-bar" [ngClass]="{ active: isActive }">
         <i class="fas fa-search" (click)="isActive = !isActive"></i>
       </div>
-      <div class="navbar__secondary--item">
-        <!-- <p>{{ username }}</p> -->
-        <div class="avatar" (click)="dropdownShown = !dropdownShown"></div>
+      <div class="navbar__secondary--item" *ngIf="userName$ | async as username">
+        <p>{{ username }}</p>
+        <div class="avatar"
+         (click)="dropdownShown = !dropdownShown"
+         [ngStyle]="{ 'background-image': 'url(https://avatars.dicebear.com/api/' + randomGender + '/' + username +'.svg)' }"
+         ></div>
         <i class="fas fa-caret-down" [ngClass]="{ rotate: dropdownShown }"></i>
         <div class="dropdown" *ngIf="dropdownShown"><p>Sign out</p></div>
       </div>

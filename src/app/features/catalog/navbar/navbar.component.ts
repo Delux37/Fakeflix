@@ -12,8 +12,10 @@ import { tap } from 'rxjs/operators';
 export class NavbarComponent {
   isActive = false; 
   dropdownShown = true;
+  randomGender = Math.random() > .5 ? 'male' : 'female';
   search = new FormControl();
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
+  userName$ = this.authService.userName$;
   ngOnInit() {
     this.router.url.substr(1,6) === 'search' ? this.isActive = true : '';
     const initialVal = this.route.snapshot.queryParams.searchTerm

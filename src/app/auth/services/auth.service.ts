@@ -2,7 +2,7 @@ import { User } from './../model/user.model';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { AuthRes, AuthUser } from '../model/auth-user.model';
@@ -12,6 +12,13 @@ export class AuthService {
   constructor(private http: HttpClient, private router:Router) { }
   private $user = new BehaviorSubject<User | null>(null);
   public user$ = this.$user.asObservable();
+  public userName$ = this.user$.pipe(
+    map(user => {
+      if(user)
+        return user.displayName;
+      return '';
+    }),
+  )
 
   signup(user: AuthUser): void {
     this.http.post<AuthRes>(environment.auth('signUp'), {
