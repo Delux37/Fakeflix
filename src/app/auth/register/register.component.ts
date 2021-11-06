@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from "@angular/forms";
 
@@ -17,7 +18,12 @@ export class RegisterComponent {
   })
 
   onSubmit() {
-    console.log(this.form);
+    const user = {
+      name: this.form.get('name')?.value,
+      email: this.form.get('email')?.value,
+      password: this.form.get('passGroup.password')?.value
+    }
+    this.authService.signup(user);
   }
-  constructor() {}
+  constructor(private authService: AuthService) {}
 }
