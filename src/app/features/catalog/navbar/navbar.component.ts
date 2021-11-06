@@ -14,7 +14,6 @@ export class NavbarComponent {
   dropdownShown = true;
   search = new FormControl();
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
-  username = this.authService.getDisplayname();
   ngOnInit() {
     this.router.url.substr(1,6) === 'search' ? this.isActive = true : '';
     const initialVal = this.route.snapshot.queryParams.searchTerm

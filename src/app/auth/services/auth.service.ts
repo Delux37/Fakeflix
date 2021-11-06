@@ -1,13 +1,17 @@
+import { User } from './../model/user.model';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { BehaviorSubject } from 'rxjs';
+import { AuthRes, AuthUser } from '../model/auth-user.model';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
   constructor(private http: HttpClient, private router:Router) { }
-  private authentificatedUser!: AuthRes;
+  private $user = new BehaviorSubject<User | null>(null);
+  public user$ = this.$user.asObservable();
 
   signup(user: AuthUser): void {
     this.http.post<AuthRes>(environment.auth('signUp'), {
@@ -15,7 +19,14 @@ export class AuthService {
         returnSecureToken: true
     })
     .pipe(tap(user => { 
-      this.authentificatedUser = user;
+      this.handleAuthentification(
+        user.email,
+        user.displayName,
+        user.localId,
+        user.idToken,
+        +user.expiresIn
+      )
+      localStorage.setItem('userData', JSON.stringify(user));
       this.router.navigate(['/']);
     }))
     .subscribe();
@@ -27,27 +38,45 @@ export class AuthService {
       returnSecureToken: true
   })
   .pipe(tap(user => { 
-    this.authentificatedUser = user 
+    this.handleAuthentification(
+      user.email,
+      user.displayName,
+      user.localId,
+      user.idToken,
+      +user.expiresIn
+    )
     this.router.navigate(['/']);
   }))
   .subscribe();
   }
 
-  getDisplayname(){
-    return this.authentificatedUser?.displayName;
+  handleAuthentification(email: string, displayName: string, id: string, token: string, expiresIn: number) {
+    const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
+    console.log(new Date())
+    const currUser = new User(email, id, displayName, token, expirationDate);
+    localStorage.setItem('userData', JSON.stringify(currUser));
+    this.$user.next(currUser);
   }
-}
-interface AuthUser {
-  displayName?: string;
-  email: string;
-  password: string;
-}
 
-interface AuthRes {
-  displayName: string;
-  idToken:	string;
-  email:	string;
-  refreshToken:	string;
-  expiresIn:	string;
-  localId:	string;
+  autoLogin() {
+    const userData: {
+      email: string, 
+      id: string, 
+      displayName: string, 
+      _token: string,
+      _tokenExpirationDate: string
+    } = JSON.parse(localStorage.getItem('userData') || '');
+    if(!userData){
+      return;
+    }
+
+    const loadedUser = new User(userData.email, userData.id, userData.displayName, userData._token, new Date(userData._tokenExpirationDate))
+    
+    if(!loadedUser.token){
+      localStorage.removeItem('userData');
+      return;
+    }
+
+    this.$user.next(loadedUser);
+  }
 }
