@@ -20,6 +20,8 @@ export class AuthService {
     }),
   )
 
+  timer: any;
+
   signup(user: AuthUser): void {
     this.http.post<AuthRes>(environment.auth('signUp'), {
         ...user,
@@ -59,9 +61,13 @@ export class AuthService {
 
   handleAuthentification(email: string, displayName: string, id: string, token: string, expiresIn: number) {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-    console.log(new Date())
     const currUser = new User(email, id, displayName, token, expirationDate);
     localStorage.setItem('userData', JSON.stringify(currUser));
+
+    this.timer = setTimeout(() => {
+      this.logout();
+    }, expiresIn * 1000)
+
     this.$user.next(currUser);
   }
 
@@ -73,23 +79,33 @@ export class AuthService {
       _token: string,
       _tokenExpirationDate: string
     } = JSON.parse(localStorage.getItem('userData') || '');
+
     if(!userData){
       return;
     }
-
+    
     const loadedUser = new User(userData.email, userData.id, userData.displayName, userData._token, new Date(userData._tokenExpirationDate))
     
     if(!loadedUser.token){
       localStorage.removeItem('userData');
       return;
     }
-
+    
     this.$user.next(loadedUser);
+
+    const expiresIn = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
+    this.timer = setTimeout(() => {
+      this.logout();
+    }, expiresIn);
   }
 
   logout() {
     this.$user.next(null);
     localStorage.clearItem('userData');
     this.router.navigate(['/auth'])
+  }
+
+  ngOnDestroy(){
+    clearTimeout(this.timer)
   }
 }
