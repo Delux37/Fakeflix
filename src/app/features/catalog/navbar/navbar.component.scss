@@ -90,13 +90,39 @@
         display: flex;
         align-items: center;
         cursor: pointer;
-        > div {
+        > .avatar {
           margin-right: 8px;
           width: 40px;
           height: 40px;
           background-color: gray;
         }
+        > p {
+          margin-right: 5px;
+        }
+        i {
+          transition: all 0.3s ease-in-out;
+        }
+        .dropdown {
+          position: absolute;
+          top: 46px;
+          left: 20px;
+          transform: translateX(-50%);
+          border: 1px solid #fff;
+          padding: 5px 10px;
+          width: 200%;
+          border-radius: 4px;
+          background-color: #141414bb;
+          transition: all .3s ease-in-out;
+          &:hover{
+            cursor: pointer;
+            color: rgb(197, 23, 23);
+          }
+        }
       }
     }
   }
+}
+
+.rotate {
+  transform: rotate(180deg);
 }

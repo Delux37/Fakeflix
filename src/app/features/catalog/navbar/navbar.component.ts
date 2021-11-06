@@ -1,3 +1,4 @@
+import { AuthService } from './../../../auth/services/auth.service';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,8 +11,10 @@ import { tap } from 'rxjs/operators';
 })
 export class NavbarComponent {
   isActive = false; 
+  dropdownShown = true;
   search = new FormControl();
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
+  username = this.authService.getDisplayname();
   ngOnInit() {
     this.router.url.substr(1,6) === 'search' ? this.isActive = true : '';
     const initialVal = this.route.snapshot.queryParams.searchTerm

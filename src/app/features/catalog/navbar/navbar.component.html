@@ -15,8 +15,10 @@
         <i class="fas fa-search" (click)="isActive = !isActive"></i>
       </div>
       <div class="navbar__secondary--item">
-        <div></div>
-        <i class="fas fa-caret-down"></i>
+        <p>{{ username }}</p>
+        <div class="avatar" (click)="dropdownShown = !dropdownShown"></div>
+        <i class="fas fa-caret-down" [ngClass]="{ rotate: dropdownShown }"></i>
+        <div class="dropdown" *ngIf="dropdownShown"><p>Sign out</p></div>
       </div>
     </div>
   </nav>

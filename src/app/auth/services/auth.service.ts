@@ -1,39 +1,50 @@
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class AuthService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router:Router) { }
+  private authentificatedUser!: AuthRes;
 
   signup(user: AuthUser): void {
-    this.http.post(environment.auth('signUp'), {
+    this.http.post<AuthRes>(environment.auth('signUp'), {
         ...user,
         returnSecureToken: true
-    }).subscribe(e => console.log(e));
+    })
+    .pipe(tap(user => { 
+      this.authentificatedUser = user;
+      this.router.navigate(['/']);
+    }))
+    .subscribe();
   }
   
   login(user: AuthUser){ 
-    this.http.post(environment.auth('signInWithPassword'), {
+    this.http.post<AuthRes>(environment.auth('signInWithPassword'), {
       ...user,
-      
       returnSecureToken: true
-  }).subscribe(e => console.log(e));
+  })
+  .pipe(tap(user => { 
+    this.authentificatedUser = user 
+    this.router.navigate(['/']);
+  }))
+  .subscribe();
   }
 
+  getDisplayname(){
+    return this.authentificatedUser?.displayName;
+  }
 }
-
-interface loginUser{
-
-}
-
 interface AuthUser {
-  displayNam?: string;
+  displayName?: string;
   email: string;
   password: string;
 }
 
 interface AuthRes {
+  displayName: string;
   idToken:	string;
   email:	string;
   refreshToken:	string;
