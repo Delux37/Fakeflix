@@ -1,6 +1,7 @@
+import { AuthValidators } from './../validators/auth.validators';
 import { AuthService } from './../services/auth.service';
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-register',
@@ -9,12 +10,12 @@ import { FormGroup, FormControl } from "@angular/forms";
 })
 export class RegisterComponent {
   form = new FormGroup({
-    'name': new FormControl(),
-    'email': new FormControl(),
+    'name': new FormControl(null, [Validators.required, AuthValidators.containsEnglishOnly]),
+    'email': new FormControl(null, Validators.email),
     'passGroup': new FormGroup({
-      'password': new FormControl(),
-      'c-password': new FormControl()
-    })
+      'password': new FormControl(null, Validators.required),
+      'c-password': new FormControl(null, Validators.required)
+    }, { validators: AuthValidators.validateCpass })
   })
 
   onSubmit() {
