@@ -2,7 +2,7 @@ import { User } from './../model/user.model';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { AuthRes, AuthUser } from '../model/auth-user.model';
@@ -30,7 +30,8 @@ export class AuthService {
         ...user,
         returnSecureToken: true
     })
-    .pipe(tap(user => { 
+    .pipe(
+      tap(user => { 
       this.handleAuthentification(
         user.email,
         user.displayName,
@@ -41,7 +42,12 @@ export class AuthService {
       localStorage.setItem('userData', JSON.stringify(user));
       this.router.navigate(['/']);
       this.$authProcessing.next(false);
-    }))
+    }), switchMap(user => {
+      return this.http
+      .post(`https://fakeflix-d41a6-default-rtdb.firebaseio.com/favouriteMovs/${user?.localId}.json?auth=${user?.idToken}`, {
+        init: 'init'
+      })
+  }))
     .subscribe(_ => { }, _ => {
       this.notifications.toggleNotification('Failed to login');
       this.$authProcessing.next(false);

@@ -73,7 +73,6 @@ export class CarouselComponent implements OnInit {
   addMovieToFavourite(movie: Movie){
     this.auth.user$
     .pipe(
-      tap(u => console.log(u)),
       switchMap(user => {
           return this.http
           .post(`https://fakeflix-d41a6-default-rtdb.firebaseio.com/favouriteMovs/${user?.id}.json?auth=${user?.token}`, {

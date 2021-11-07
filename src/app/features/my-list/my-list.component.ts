@@ -47,4 +47,8 @@ import { map, switchMap, tap } from 'rxjs/operators';
         .subscribe()
       }
 
+      deleteMovie(movie: Movie){
+          console.log(movie);
+      }
+
   }

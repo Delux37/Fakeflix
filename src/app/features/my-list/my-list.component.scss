@@ -67,9 +67,14 @@
         font-size: 14px;
         background-color: transparent;
         color: #fff;
+        transition: all .3 ease-in-out;
         &:first-child{
-          background-color: #fff;
-          color: #000;
+            background-color: #fff;
+            color: #000;
+        }
+        &:hover{
+            background-color: rgb(202, 202, 202);
+            cursor: pointer;
         }
       }
     }
