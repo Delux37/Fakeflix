@@ -70,16 +70,16 @@
     top: 15px;
     &__button {
       padding: 8px 10px;
-      border: 2px solid #fff;
+      border: 1px solid #fff;
       border-radius: 50%;
-      color: #000;
+      color: #fff;
+      background-color: gray;
       transition: all .3s ease-in-out;
     }
     &:hover .close-btn__button{
-        background-color: #000;
-        border: 2px solid #000;
+        background-color: rgb(75, 75, 75);
         cursor: pointer;
-        color: #fff;
+        color: rgb(202, 202, 202);
     }
   }
   &__image {

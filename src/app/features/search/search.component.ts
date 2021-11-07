@@ -18,7 +18,11 @@ import { BehaviorSubject } from 'rxjs';
 export class SearchComponent implements OnInit {
   image = environment.image;
   
-  constructor(private route: ActivatedRoute, private http: HttpClient, public catalogService: CatalogService) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private http: HttpClient, 
+    public catalogService: CatalogService,
+    ) { }
   searchKeyword$ = new BehaviorSubject<string>('');
   searchMovies$ = new BehaviorSubject<Movie[] | null>(null);
 
@@ -31,7 +35,7 @@ export class SearchComponent implements OnInit {
       tap(movies => {
         this.searchMovies$.next(movies);
       })
-    ).subscribe(e => console.log(e));
+    ).subscribe();
   }
   fetch(type: string, filter?: string): Observable<Movie[]> {
     return this.http
@@ -40,5 +44,8 @@ export class SearchComponent implements OnInit {
           `${type}?api_key=${environment['api-key']}${filter ? filter : ''}`
       )
       .pipe(map((res: any) => res.results));
+  }
+  addToFav(movie: Movie){
+    console.log('here')
   }
 }

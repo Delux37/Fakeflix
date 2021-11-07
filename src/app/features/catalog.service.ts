@@ -192,7 +192,6 @@ export class CatalogService {
       .pipe(map((res: any) => res.results));
   }
   getGenreName(id: number): string {
-    console.log(this._genres);
     return this._genres.get(id);
   }
 }

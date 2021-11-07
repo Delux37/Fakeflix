@@ -1,3 +1,4 @@
+import { DialogService } from './../dialog/service/dialog.service';
 import { environment } from 'src/environments/environment';
 import { CatalogService } from './../../features/catalog.service';
 import { Movie } from 'src/app/features/catalog/model/movie.model';
@@ -23,9 +24,9 @@ export class MovieCardComponent implements OnInit {
   }
 
   showDetail() {
-    //..
+    this.dialogService.updateDialog(this.movie);
   }
-  constructor(public catalogService: CatalogService) { }
+  constructor(public catalogService: CatalogService, private dialogService: DialogService) { }
 
   ngOnInit(): void {
   }
