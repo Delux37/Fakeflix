@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { tap, switchMap } from 'rxjs/operators';
+import { tap, switchMap, map } from 'rxjs/operators';
 import { AuthService } from './../../auth/services/auth.service';
 import { DialogService } from './../dialog/service/dialog.service';
 import { CatalogService } from './../../features/catalog.service';
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import SwiperCore, {
   Navigation,
@@ -50,7 +50,6 @@ export class CarouselComponent implements OnInit {
     this.dialogService.updateDialog(movie);
   }
   ngOnInit(): void {
-
     let carousel = new Swiper('.swiper', {
       navigation: {
         nextEl: '.swiper-button-next',
@@ -83,6 +82,4 @@ export class CarouselComponent implements OnInit {
       }))
     .subscribe()
   }
-  
-
 }
