@@ -21,7 +21,7 @@ import { map, switchMap, tap } from 'rxjs/operators';
     
     $favMovies = new BehaviorSubject<Movie[] | null>(null);
     favMovies$ = this.$favMovies.asObservable();
-    image = environment.image;
+    
 
     ngOnInit() {
         this.fetchMovies()

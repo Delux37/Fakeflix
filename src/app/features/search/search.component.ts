@@ -31,7 +31,7 @@ export class SearchComponent implements OnInit {
       tap(movies => {
         this.searchMovies$.next(movies);
       })
-    ).subscribe(e => e.forEach(el => console.log(el.original_name)));
+    ).subscribe(e => console.log(e));
   }
   fetch(type: string, filter?: string): Observable<Movie[]> {
     return this.http

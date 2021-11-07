@@ -10,12 +10,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { LoadingSkeletonComponent } from './loading-skeleton/loading-skeleton.component';
+import { MovieCardComponent } from './movie-card/movie-card.component';
 @NgModule({
   declarations: [CarouselComponent, DialogComponent, NavbarComponent,
     BannerComponent,
     LoadingSpinnerComponent,
     NotificationsComponent,
-    LoadingSkeletonComponent],
+    LoadingSkeletonComponent,
+    MovieCardComponent],
 
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { LoadingSkeletonComponent } from './loading-skeleton/loading-skeleton.co
     BannerComponent,
     LoadingSpinnerComponent,
     NotificationsComponent,
-    LoadingSkeletonComponent
+    LoadingSkeletonComponent,
+    MovieCardComponent
   ]
 })
 export class SharedModule { }
