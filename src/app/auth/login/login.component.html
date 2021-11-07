@@ -32,7 +32,10 @@
         form.get('password')?.touched"
         >Minimum length is 7</p>
       </div>
-      <button class="form--button submit" style="--animation-order: 3;" (click)="onSignIn()">Sign in</button>
+      <button class="form--button submit" style="--animation-order: 3;" (click)="onSignIn()">
+        Sign in
+        <app-loading-spinner></app-loading-spinner>
+      </button>
       <button class="form--button google" style="--animation-order: 4;">
         <svg
           class="svg"

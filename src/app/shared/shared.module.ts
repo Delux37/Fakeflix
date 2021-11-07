@@ -7,11 +7,13 @@ import { NavbarComponent } from '../features/catalog/navbar/navbar.component';
 import { BannerComponent } from '../features/catalog/banner/banner.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 
 @NgModule({
   declarations: [CarouselComponent, DialogComponent, NavbarComponent,
-    BannerComponent],
+    BannerComponent,
+    LoadingSpinnerComponent],
 
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CarouselComponent,
     DialogComponent,
     NavbarComponent,
-    BannerComponent
+    BannerComponent,
+    LoadingSpinnerComponent
   ]
 })
 export class SharedModule { }
