@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { NotificationToggleService } from '../shared/notifications/services/notification-toggle.service';
 
 
 @NgModule({
@@ -27,5 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     ReactiveFormsModule
   ],
+  providers: [
+    NotificationToggleService
+  ]
 })
 export class AuthModule { }

@@ -26,6 +26,8 @@ export class LoginComponent {
         password: this.form.get('password')?.value
       }
       this.authService.login(user);
+    }else {
+      this.form.markAllAsTouched();
     }
   }
 

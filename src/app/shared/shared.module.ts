@@ -8,25 +8,26 @@ import { BannerComponent } from '../features/catalog/banner/banner.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
-
-
+import { NotificationsComponent } from './notifications/notifications.component';
 @NgModule({
   declarations: [CarouselComponent, DialogComponent, NavbarComponent,
     BannerComponent,
-    LoadingSpinnerComponent],
+    LoadingSpinnerComponent,
+    NotificationsComponent],
 
   imports: [
     CommonModule,
     SwiperModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [
     CarouselComponent,
     DialogComponent,
     NavbarComponent,
     BannerComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    NotificationsComponent
   ]
 })
 export class SharedModule { }

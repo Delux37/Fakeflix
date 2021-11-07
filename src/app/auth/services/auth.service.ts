@@ -6,10 +6,11 @@ import { map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { AuthRes, AuthUser } from '../model/auth-user.model';
+import { NotificationToggleService } from 'src/app/shared/notifications/services/notification-toggle.service';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
-  constructor(private http: HttpClient, private router:Router) { }
+  constructor(private http: HttpClient, private router:Router, private notifications: NotificationToggleService) { }
   private $authProcessing = new BehaviorSubject<boolean>(false);
   private $user = new BehaviorSubject<User | null>(null);
   public authProcessing$ = this.$authProcessing.asObservable();
@@ -41,7 +42,10 @@ export class AuthService {
       this.router.navigate(['/']);
       this.$authProcessing.next(false);
     }))
-    .subscribe();
+    .subscribe(_ => { }, _ => {
+      this.notifications.toggleNotification('Failed to login');
+      this.$authProcessing.next(false);
+    });
   }
   
   login(user: AuthUser){ 
@@ -49,7 +53,8 @@ export class AuthService {
       ...user,
       returnSecureToken: true
   })
-  .pipe(tap(user => { 
+  .pipe(
+    tap(user => { 
     this.handleAuthentification(
       user.email,
       user.displayName,
@@ -60,7 +65,10 @@ export class AuthService {
     this.router.navigate(['/']);
     this.$authProcessing.next(false);
   }))
-  .subscribe();
+  .subscribe(_ => {}, _ => {
+    this.notifications.toggleNotification('Failed to login');
+    this.$authProcessing.next(false);
+  });
   }
 
   handleAuthentification(email: string, displayName: string, id: string, token: string, expiresIn: number) {

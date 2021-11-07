@@ -1,0 +1,13 @@
+<div
+  [@enterAnimation]
+  *ngIf="visibleStatus$ | async"
+  class="notification-container"
+  [ngClass]="[textColor$ | async, backgroundColor$ | async]"
+>
+  <i class="fas fa-bell"></i>
+  <p>{{ notificationText$ | async }}</p>
+  <i
+    class="fas fa-times"
+    (click)="closeNotification()"
+  ></i>
+</div>

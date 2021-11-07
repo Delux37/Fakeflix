@@ -1,0 +1,45 @@
+
+.notification-container {
+  width: 33vw;
+  height: 64px;
+  background-color: red;
+  position: fixed;
+  z-index: 100;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 21px;
+  gap: 20px;
+  & .bell-icon {
+    font-size: 22px;
+  }
+  & p {
+    font-size: 16px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    width: 100%;
+    text-align: center;
+    @media screen and (max-width: 560px) {
+      font-size: 15px;
+    }
+  }
+  & .close-btn {
+    cursor: pointer;
+    font-size: 18px;
+  }
+  @media screen and (max-width: 560px) {
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+
+.white {
+  background-color: #ffffff;
+  box-shadow: 5px 5px 20px 5px rgba(153, 155, 168, 1);
+  -webkit-box-shadow: 5px 5px 20px 5px rgba(153, 155, 168, 1);
+  -moz-box-shadow: 5px 5px 20px 5px rgba(153, 155, 168, 1);
+}

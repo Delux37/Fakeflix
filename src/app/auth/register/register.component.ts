@@ -30,6 +30,8 @@ export class RegisterComponent {
         password: this.form.get('passGroup.password')?.value
       }
       this.authService.signup(user);
+    }else {
+      this.form.markAllAsTouched();
     }
   }
   constructor(private authService: AuthService) {}
