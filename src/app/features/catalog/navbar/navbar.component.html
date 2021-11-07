@@ -1,4 +1,6 @@
-<nav class="navbar">
+<nav class="navbar" 
+  [ngClass]="[isScrolled$ | async]"
+>
     <a class="navbar__logo">
       <img class="Navbar__logo" src="../../../assets/fakeflix-logo.png" alt="" />
     </a>
