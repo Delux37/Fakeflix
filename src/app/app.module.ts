@@ -12,8 +12,9 @@ import { AuthComponent } from './auth/auth-wrapper/auth.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { SearchComponent } from './features/search/search.component';
 import { CoreModule } from './core/core.module';
+import { MyListComponent } from './features/my-list/my-list.component';
 
-const components = [AppComponent, SearchComponent];
+const components = [AppComponent, SearchComponent, MyListComponent];
 const modules = [
   BrowserModule,
   BrowserAnimationsModule,
