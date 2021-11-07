@@ -1,0 +1,13 @@
+.container {
+    min-height: 100vh;
+    background-color: #141414;
+    padding: 100px 50px;
+    
+    .movies_container{
+        display: flex;
+        row-gap: 30px;
+        column-gap: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

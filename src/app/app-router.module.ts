@@ -4,6 +4,7 @@ import { AuthComponent } from './auth/auth-wrapper/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { MyListComponent } from './features/my-list/my-list.component';
 import { SearchComponent } from './features/search/search.component';
 
 const routes = [
@@ -41,17 +42,15 @@ const routes = [
       ),
   },
   {
-    path: 'my-list',
-    canActivate: [AuthGuard],
-    loadChildren: () =>
-      import('./features/catalog/catalog.module').then(
-        (m) => m.CatalogModule
-      ),
-  },
-  {
     path: 'search',
     canActivate: [AuthGuard],
     component: SearchComponent,
+  },
+
+  {
+    path: 'my-list',
+    canActivate: [AuthGuard],
+    component: MyListComponent,
   },
 
   {
