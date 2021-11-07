@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from './../../auth/services/auth.service';
 import { Component } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { environment } from "src/environments/environment";
 import { CatalogService } from "../catalog.service";
 import { Movie } from "../catalog/model/movie.model";
 import { map, switchMap, tap } from 'rxjs/operators';
@@ -47,8 +46,8 @@ import { map, switchMap, tap } from 'rxjs/operators';
         .subscribe()
       }
 
-      deleteMovie(movie: Movie){
-          console.log(movie);
-      }
+    deleteMovie(movie: Movie){
+        console.log(movie);
+    }
 
   }

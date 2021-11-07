@@ -1,3 +1,4 @@
+import { MyListService } from './../../features/my-list/service/my-list.service';
 import { HttpClient } from '@angular/common/http';
 import { tap, switchMap, map } from 'rxjs/operators';
 import { AuthService } from './../../auth/services/auth.service';
@@ -44,7 +45,8 @@ export class CarouselComponent implements OnInit {
     public catalogService: CatalogService, 
     private dialogService: DialogService, 
     private auth:AuthService,
-    private http: HttpClient
+    private http: HttpClient,
+    private listService: MyListService
     ) { }
   showDetailModal(movie: Movie) {
     this.dialogService.updateDialog(movie);
@@ -70,15 +72,9 @@ export class CarouselComponent implements OnInit {
     });
   }
 
+  
+
   addMovieToFavourite(movie: Movie){
-    this.auth.user$
-    .pipe(
-      switchMap(user => {
-          return this.http
-          .post(`https://fakeflix-d41a6-default-rtdb.firebaseio.com/favouriteMovs/${user?.id}.json?auth=${user?.token}`, {
-            ...movie
-          })
-      }))
-    .subscribe()
+    this.listService.addToFavourite(movie);
   }
 }
