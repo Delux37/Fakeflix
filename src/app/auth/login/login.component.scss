@@ -45,6 +45,14 @@
           border: 1px solid #e50914;
         }
       }
+      &.loadingBtn{ 
+        background-color: rgb(37, 37, 37);
+        border: 1px solid #be0711;
+        &:hover{
+          background-color: rgb(37, 37, 37);
+          border: 1px solid #be0711;
+        }
+      }
     }
   }
 
