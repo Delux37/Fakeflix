@@ -4,9 +4,10 @@
         <p class="title">Your favourite movies: </p>
         <div class="movies_container">
           <app-movie-card  
-          *ngFor="let movie of movies" 
+          *ngFor="let movie of movies; index as i" 
           [movie]="movie"
           [inList]="true"
+          (toggle)="deleteMovie(movie, i)"
           >
           </app-movie-card>
         </div>

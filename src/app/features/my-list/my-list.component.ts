@@ -20,7 +20,7 @@ import { map, switchMap, tap } from 'rxjs/operators';
     
     $favMovies = new BehaviorSubject<Movie[] | null>(null);
     favMovies$ = this.$favMovies.asObservable();
-    
+    private favMovies!: Movie[];
 
     ngOnInit() {
         this.fetchMovies()
@@ -36,18 +36,36 @@ import { map, switchMap, tap } from 'rxjs/operators';
             const moviesArr: Movie[] = [];
             const ids = Object.keys(movies);
             for(let id of ids) {
-              moviesArr.push((movies[id] as unknown as Movie));
+              const movie = {
+                firebaseId: id,
+                ...movies[id]
+              }
+              moviesArr.push((movie as unknown as Movie));
             }
     
             return moviesArr;
           }),
-          tap(e => e.length ? this.$favMovies.next(e): '')
+          tap(e => {
+            if(e.length){
+              this.$favMovies.next(e);
+              this.favMovies = e;
+            }
+          })
           )
         .subscribe()
       }
 
-    deleteMovie(movie: Movie){
-        console.log(movie);
+    deleteMovie(movie: Movie, index: number){
+      
+      this.auth.user$
+      .pipe(
+        switchMap(user => this.http.delete(`https://fakeflix-d41a6-default-rtdb.firebaseio.com/favouriteMovs/${user?.id}/${movie.firebaseId}.json?auth=${user?.token}`))
+      )
+      .subscribe(_ => {
+        this.favMovies.splice(index,1);
+        this.$favMovies.next(this.favMovies);
+      })
+      
     }
 
   }
