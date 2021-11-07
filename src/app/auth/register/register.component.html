@@ -57,7 +57,18 @@
         >Passwords doesn't match</p>
       </div>
     </ng-container>
-    <button (click)="onSubmit()" class="form--button submit" style="--animation-order: 5;">Sign up</button>
+    <button 
+    (click)="onSubmit()" 
+    class="form--button submit"
+     style="--animation-order: 5;"
+    [disabled]="isLoading"
+    [ngClass]="{ loadingBtn: isLoading }"
+     >
+     <span *ngIf="!isLoading">
+       Sign up
+     </span>
+     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+    </button>
   </form>
   <hr class="content__line" />
   <small class="content__signup--toggler">

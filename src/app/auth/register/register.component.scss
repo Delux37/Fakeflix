@@ -24,7 +24,15 @@
       &.submit {
         &:hover {
           background-color: #be0711;
-          color: orange;
+          color: rgb(155, 154, 151);
+        }
+      }
+      &.loadingBtn{ 
+        background-color: rgb(37, 37, 37);
+        border: 1px solid #be0711;
+        &:hover{
+          background-color: rgb(37, 37, 37);
+          border: 1px solid #be0711;
         }
       }
     }
