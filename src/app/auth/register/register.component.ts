@@ -13,7 +13,7 @@ export class RegisterComponent {
     'name': new FormControl(null, [Validators.required, AuthValidators.containsEnglishOnly]),
     'email': new FormControl(null, Validators.email),
     'passGroup': new FormGroup({
-      'password': new FormControl(null, Validators.required),
+      'password': new FormControl(null, [Validators.required, Validators.minLength(7)]),
       'c-password': new FormControl(null, Validators.required)
     }, { validators: AuthValidators.validateCpass })
   })

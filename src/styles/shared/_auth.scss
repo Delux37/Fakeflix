@@ -11,13 +11,12 @@
     border: 0;
     border-bottom: 2px solid transparent;
     transition: all 0.2s ease-out;
-    &.input-error {
+    &.ng-invalid.ng-touched {
         border-bottom: 2px solid orange;
     }
 }
 
 .btn {
-  
     display: flex;
     justify-content: center;
     align-items: center;

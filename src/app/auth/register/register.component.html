@@ -8,16 +8,49 @@
 <form class="form" autocomplete="off" [formGroup]="form">
     <div class="form--control" style="--animation-order: 1;">
       <input formControlName="name"  type="text" placeholder="Your name" />
+      <p 
+      *ngIf="
+      form.get('name')?.errors?.required&& 
+      form.get('name')?.touched" class="error-message">Name is required</p>
+      <p class="error-message"
+      *ngIf="
+      form.get('name')?.errors?.containsEnglishOnly && 
+      form.get('name')?.touched"
+      >Name shouly only contain English letters</p>
     </div>
     <div class="form--control" style="--animation-order: 2;">
       <input formControlName="email" type="email" placeholder="E-mail" />
+      <p class="error-message" *ngIf="
+      form.get('email')?.errors?.required &&
+      form.get('email')?.touched
+      ">Email is required</p>
     </div>
     <ng-container formGroupName="passGroup">
       <div class="form--control" style="--animation-order: 3;">
-        <input formControlName="password" type="password" placeholder="Password" />
+        <input formControlName="password" type="password" placeholder="Password"/>
+        <p class="error-message"
+        *ngIf="
+        form.get('passGroup.password')?.errors?.required &&
+        form.get('passGroup.password')?.touched
+        "
+        >Password is required</p>
+        <p class="error-message"
+        *ngIf="form.get('passGroup.password')?.errors?.minlength && 
+        form.get('passGroup.password')?.touched"
+        >Minimum length is 7</p>
       </div>
       <div class="form--control" style="--animation-order: 4;">
         <input formControlName="c-password" type="password" placeholder="Repeat your password" />
+        <p class="error-message"
+        *ngIf="
+        form.get('passGroup.c-password')?.errors?.required &&
+        form.get('passGroup.c-password')?.touched"
+        >C-Password is required</p>
+        <p class="error-message"
+        *ngIf="
+        form.get('passGroup')?.errors?.passwordDisMatch &&
+        form.get('passGroup.c-password')?.touched"
+        >Passwords doesn't match</p>
       </div>
     </ng-container>
     <button (click)="onSubmit()" class="form--button submit" style="--animation-order: 5;">Sign up</button>
