@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<ng-container *ngIf="movies$ | async as movies">
+<ng-container *ngIf="movies$ | async as movies; else loading">
   <app-banner
     [title]="movies.banner[0].name"
     [description]="movies.banner[0].overview"
@@ -13,3 +13,6 @@
     </ng-container>
   </div>
 </ng-container>
+<ng-template #loading>
+  <app-loading-skeleton></app-loading-skeleton>
+</ng-template>

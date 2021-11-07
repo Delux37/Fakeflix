@@ -9,11 +9,13 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { LoadingSkeletonComponent } from './loading-skeleton/loading-skeleton.component';
 @NgModule({
   declarations: [CarouselComponent, DialogComponent, NavbarComponent,
     BannerComponent,
     LoadingSpinnerComponent,
-    NotificationsComponent],
+    NotificationsComponent,
+    LoadingSkeletonComponent],
 
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
     NavbarComponent,
     BannerComponent,
     LoadingSpinnerComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    LoadingSkeletonComponent
   ]
 })
 export class SharedModule { }
