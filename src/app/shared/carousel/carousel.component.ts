@@ -1,3 +1,6 @@
+import { HttpClient } from '@angular/common/http';
+import { tap, switchMap } from 'rxjs/operators';
+import { AuthService } from './../../auth/services/auth.service';
 import { DialogService } from './../dialog/service/dialog.service';
 import { CatalogService } from './../../features/catalog.service';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
@@ -37,7 +40,12 @@ export class CarouselComponent implements OnInit {
   @Input() movies!: any[];
   @Input() title!: string;
   image = environment.image;
-  constructor(public catalogService: CatalogService, private dialogService: DialogService) { }
+  constructor(
+    public catalogService: CatalogService, 
+    private dialogService: DialogService, 
+    private auth:AuthService,
+    private http: HttpClient
+    ) { }
   showDetailModal(movie: Movie) {
     this.dialogService.updateDialog(movie);
   }
@@ -61,6 +69,19 @@ export class CarouselComponent implements OnInit {
       // pagination: { clickable: true },
       scrollbar: { draggable: true },
     });
+  }
+
+  addMovieToFavourite(movie: Movie){
+    this.auth.user$
+    .pipe(
+      tap(u => console.log(u)),
+      switchMap(user => {
+          return this.http
+          .post(`https://fakeflix-d41a6-default-rtdb.firebaseio.com/favouriteMovs/${user?.id}.json?auth=${user?.token}`, {
+            ...movie
+          })
+      }))
+    .subscribe()
   }
   
 

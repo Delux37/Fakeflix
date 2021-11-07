@@ -119,9 +119,14 @@
         font-size: 14px;
         background-color: transparent;
         color: #fff;
+        transition: all .3s ease-in-out;
         &:first-child{
           background-color: #fff;
           color: #000;
+        }
+        &:hover{
+          cursor: pointer;
+          background-color: rgb(209, 209, 209);
         }
       }
     }
