@@ -50,7 +50,8 @@ import { map, switchMap, tap } from 'rxjs/operators';
               this.$favMovies.next(e);
               this.favMovies = e;
             }
-          })
+          }),
+          tap(s => console.log(s))
           )
         .subscribe()
       }

@@ -38,4 +38,10 @@ export class LoginComponent {
   ngOndestroy(){
     this.sub.unsubscribe();
   }
+
+  anonimousSignIn(){
+    this.form.markAsUntouched();
+    this.authService.authStarted();
+    this.authService.login({ email: 'anonimous@gmail.com', password: 'anonimous' })
+  }
 }

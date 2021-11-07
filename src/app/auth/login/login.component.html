@@ -93,8 +93,10 @@
       [ngClass]="{ loadingBtn: isLoading }"
       [disabled]="isLoading"
       >
-      <ng-container *ngIf="!isLoading">
-        Sign in anonimously
+      <ng-container *ngIf="!isLoading" >
+        <span (click)="anonimousSignIn()">
+          Sign in anonimously
+        </span>
       </ng-container>
       <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
     </button>
