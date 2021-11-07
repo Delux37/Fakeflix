@@ -8,9 +8,29 @@
     <form class="form" autocomplete="off" [formGroup]="form">
       <div class="form--control" style="--animation-order: 1;">
         <input formControlName="email" type="email" placeholder="E-mail" />
+        <p 
+        *ngIf="
+        form.get('email')?.errors?.required &&
+        form.get('email')?.touched"
+        class="error-message">Email is required</p>
+        <p 
+        *ngIf="
+        form.get('email')?.errors?.email &&
+        form.get('email')?.touched"
+        class="error-message">Email should look like email</p>
       </div>
       <div class="form--control" style="--animation-order: 2;">
         <input formControlName="password" type="password" placeholder="Password" />
+        <p class="error-message"
+        *ngIf="
+        form.get('password')?.errors?.required &&
+        form.get('password')?.touched"
+        >Password is required</p>
+        <p class="error-message"
+        *ngIf="
+        form.get('password')?.errors?.minlength &&
+        form.get('password')?.touched"
+        >Minimum length is 7</p>
       </div>
       <button class="form--button submit" style="--animation-order: 3;" (click)="onSignIn()">Sign in</button>
       <button class="form--button google" style="--animation-order: 4;">

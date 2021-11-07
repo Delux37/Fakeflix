@@ -24,6 +24,10 @@
       form.get('email')?.errors?.required &&
       form.get('email')?.touched
       ">Email is required</p>
+      <p class="error-message" *ngIf="
+      form.get('email')?.errors?.email &&
+      form.get('email')?.touched
+      ">Email should look like email</p>
     </div>
     <ng-container formGroupName="passGroup">
       <div class="form--control" style="--animation-order: 3;">

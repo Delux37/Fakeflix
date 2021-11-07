@@ -11,7 +11,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 export class RegisterComponent {
   form = new FormGroup({
     'name': new FormControl(null, [Validators.required, AuthValidators.containsEnglishOnly]),
-    'email': new FormControl(null, Validators.email),
+    'email': new FormControl(null, [Validators.email, Validators.required]),
     'passGroup': new FormGroup({
       'password': new FormControl(null, [Validators.required, Validators.minLength(7)]),
       'c-password': new FormControl(null, Validators.required)

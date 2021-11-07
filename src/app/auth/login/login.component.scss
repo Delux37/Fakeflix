@@ -8,6 +8,11 @@
       input {
         @extend .input;
       }
+      .error-message {
+        animation: slideDown .3s ease-in-out;
+        font-size: 14px;
+        color: orange;
+      }
     }
     &--button {
       @extend .btn;
@@ -45,4 +50,16 @@
 
   .content {
     @extend .content
+  }
+
+
+@keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
