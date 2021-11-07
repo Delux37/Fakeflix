@@ -2,7 +2,7 @@ import { User } from './../model/user.model';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { AuthRes, AuthUser } from '../model/auth-user.model';
@@ -10,7 +10,9 @@ import { AuthRes, AuthUser } from '../model/auth-user.model';
 @Injectable({providedIn: 'root'})
 export class AuthService {
   constructor(private http: HttpClient, private router:Router) { }
+  private $authProcessing = new BehaviorSubject<boolean>(false);
   private $user = new BehaviorSubject<User | null>(null);
+  public authProcessing$ = this.$authProcessing.asObservable();
   public user$ = this.$user.asObservable();
   public userName$ = this.user$.pipe(
     map(user => {
@@ -37,6 +39,7 @@ export class AuthService {
       )
       localStorage.setItem('userData', JSON.stringify(user));
       this.router.navigate(['/']);
+      this.$authProcessing.next(false);
     }))
     .subscribe();
   }
@@ -55,6 +58,7 @@ export class AuthService {
       +user.expiresIn
     )
     this.router.navigate(['/']);
+    this.$authProcessing.next(false);
   }))
   .subscribe();
   }
@@ -107,5 +111,9 @@ export class AuthService {
 
   ngOnDestroy(){
     clearTimeout(this.timer)
+  }
+
+  authStarted(){
+    this.$authProcessing.next(true);
   }
 }

@@ -2,6 +2,7 @@ import { AuthValidators } from './../validators/auth.validators';
 import { AuthService } from './../services/auth.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,8 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  isLoading = true;
+  isLoading = false;
+  sub!: Subscription;
   form = new FormGroup({
     'name': new FormControl(null, [Validators.required, AuthValidators.containsEnglishOnly]),
     'email': new FormControl(null, [Validators.email, Validators.required]),
@@ -20,12 +22,23 @@ export class RegisterComponent {
   })
 
   onSubmit() {
-    const user = {
-      displayName: this.form.get('name')?.value,
-      email: this.form.get('email')?.value,
-      password: this.form.get('passGroup.password')?.value
+    if(this.form.valid){
+      this.authService.authStarted();
+      const user = {
+        displayName: this.form.get('name')?.value,
+        email: this.form.get('email')?.value,
+        password: this.form.get('passGroup.password')?.value
+      }
+      this.authService.signup(user);
     }
-    this.authService.signup(user);
   }
   constructor(private authService: AuthService) {}
+
+  ngOnInit(){
+    this.sub = this.authService.authProcessing$.subscribe(val => this.isLoading = val);
+  }
+
+  ngOndestroy(){
+    this.sub.unsubscribe();
+  }
 }
